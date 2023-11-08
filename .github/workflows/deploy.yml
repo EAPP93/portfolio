@@ -11,8 +11,8 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
       
-      - name: install package
-        run: npm ci
+      - name: install packages
+        run: npm i
       
       - name: Build 🔧
         run: npm run build
@@ -20,5 +20,5 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: website
+          branch: gh-pages
           folder: dist
