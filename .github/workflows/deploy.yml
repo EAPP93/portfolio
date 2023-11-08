@@ -10,10 +10,16 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
-      
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
       - name: install packages
         run: npm i
-      
+
       - name: Build 🔧
         run: npm run build
 
