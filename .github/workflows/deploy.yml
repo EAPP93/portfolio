@@ -1,4 +1,4 @@
-name: pruebas
+name: pruebas2
 
 on:
   push:
@@ -26,5 +26,5 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: website
+          branch: main
           folder: dist
