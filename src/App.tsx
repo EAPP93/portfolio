@@ -1,36 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import  { useState, useEffect } from 'react';
+import './App.scss';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const targetDate = new Date('2023-11-13T00:00:00').getTime();
+
+    const updateCountdown = () => {
+      const currentDate = new Date().getTime();
+      const timeRemaining = targetDate - currentDate;
+
+      if (timeRemaining <= 0) {
+        // Mantenimiento finalizado
+        clearInterval(countdownInterval);
+      } else {
+        const daysRemaining = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hoursRemaining = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        setDays(daysRemaining);
+        setHours(hoursRemaining);
+        setMinutes(minutesRemaining);
+        setSeconds(secondsRemaining);
+      }
+    };
+
+    // Actualiza el contador cada segundo
+    const countdownInterval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(countdownInterval);
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="maintenance-page"> 
+      <div className="maintenance-content"> 
+        <h1 className="h1">Estamos en mantenimiento.</h1> 
+        <h2 className="h2">¡Pronto estaremos de vuelta con una nueva versión del portafolio!</h2> 
+        <div className="countdown"> 
+          <span className="countdown-number">{days}</span>
+          <p className="countdown-label">días</p> 
+          <span className="countdown-number">{hours}</span> 
+          <p className="countdown-label">horas</p> 
+          <span className="countdown-number">{minutes}</span> 
+          <p className="countdown-label">minutos</p> 
+          <span className="countdown-number">{seconds}</span> 
+          <p className="countdown-label">segundos</p> 
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <p>cambios</p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
