@@ -39,8 +39,8 @@ function App() {
   return (
     <div className="maintenance-page"> 
       <div className="maintenance-content"> 
-        <h1 className="h1">Estamos en mantenimiento.</h1> 
-        <h2 className="h2">¡Pronto estaremos de vuelta con una nueva versión del portafolio!</h2> 
+        <h1 className="h1">Estoy mudando la web a un nuevo servicio</h1> 
+        <h2 className="h2">¡Pronto estará de vuelta con una nueva versión del portafolio!</h2> 
         <div className="countdown"> 
           <span className="countdown-number">{days}</span>
           <p className="countdown-label">días</p> 
