@@ -8,7 +8,7 @@ function App() {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    const targetDate = new Date('2024-10-27T00:00:00').getTime();
+    const targetDate = new Date('2024-12-24T00:00:00').getTime();
 
     const updateCountdown = () => {
       const currentDate = new Date().getTime();
